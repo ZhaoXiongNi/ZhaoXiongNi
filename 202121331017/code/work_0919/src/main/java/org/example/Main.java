@@ -11,9 +11,11 @@ import com.hankcs.hanlp.HanLP;
 import com.hankcs.hanlp.seg.common.Term;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
+
+import static org.example.Content.getContent;
+import static org.example.DotP.dotProduct;
 
 public class Main {
     public static void main(String[] args) throws Exception{
@@ -65,7 +67,7 @@ public class Main {
             }
         }
         //计算余弦相似度算法的二者平方根之和
-        double[] sqrtSums = sumOfSquareRoots(wordMap);
+        double[] sqrtSums = SSR.sumOfSquareRoots(wordMap);
         //计算余弦相似度
         double res = dotProduct(wordMap) / (sqrtSums[0]*sqrtSums[1]);
 
@@ -78,49 +80,9 @@ public class Main {
         System.out.printf("相似率：%.2f %%, 结果成功已转存到文件中\n",res*100);
     }
 
-    private static void getContent(String filePath, StringBuffer content) {
-        BufferedReader fileReader;
-        if(!new File(filePath).exists()){
-            System.out.println("文件路径"+filePath+"不存在");   //文件不存在报错
-        }
-        try {
-            fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8)); //文件内容读取器
-            String firstLine;
-            // 首先检查文件是否为空
-            if ((firstLine = fileReader.readLine()) == null) {
-                System.out.println("文件路径"+filePath+"为空");
-                return;
-            }
-            content.append(firstLine);
 
-            while (null != fileReader.readLine()){
-                content.append(fileReader.readLine());   //获取文件内容
-            }
-            fileReader.close();    //关闭读取器
-        }catch (Exception e){
-            System.out.println("读取失败");
-        }
-    }
 
-    // 计算点积
-    private static double dotProduct(HashMap<String, int[]> wordMap) {
-        double res = 0;
-        for (int[] c : wordMap.values()) {
-            res += (c[0] * c[1]);
-        }
-        return res;
-    }
 
-    // 计算二者平方根之和
-    private static double[] sumOfSquareRoots(HashMap<String, int[]> wordMap) {
-        double[] res = new double[2];
-        for (int[] c : wordMap.values()) {
-            res[0] += (c[0] * c[0]);
-            res[1] += (c[1] * c[1]);
-        }
-        res[0] = Math.sqrt(res[0]);
-        res[1] = Math.sqrt(res[1]);
 
-        return res;
-    }
+
 }
