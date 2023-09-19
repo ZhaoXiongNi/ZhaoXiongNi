@@ -10,10 +10,8 @@ package org.example;
 import com.hankcs.hanlp.HanLP;
 import com.hankcs.hanlp.seg.common.Term;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.PrintWriter;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,6 +22,7 @@ public class Main {
         String filePath2 = args[1];     //抄袭文件2的路径
         String outputPath = args[2];   //输出相似率路径
 
+
         //读取文件内容
         //创建文章结果
         StringBuffer content1 = new StringBuffer();
@@ -32,6 +31,7 @@ public class Main {
         //调用自定义函数读取文件中的文字
         getContent(filePath1, content1);
         getContent(filePath2, content2);
+        //System.out.println(content1+"*"+content2);    临时测试代码
 
         //使用HanLP分词器进行分词,Term对象代表句子中的一个词
         List<Term> fileWords1 = HanLP.segment(content1.toString().trim());    //词语集1，文件1的内容,去除空格
@@ -84,7 +84,7 @@ public class Main {
             System.out.println("文件路径"+filePath+"不存在");   //文件不存在报错
         }
         try {
-            fileReader = new BufferedReader(new FileReader(filePath)); //文件内容读取器
+            fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8)); //文件内容读取器
             String firstLine;
             // 首先检查文件是否为空
             if ((firstLine = fileReader.readLine()) == null) {
