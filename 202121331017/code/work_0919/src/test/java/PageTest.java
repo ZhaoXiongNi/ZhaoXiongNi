@@ -1,7 +1,9 @@
 import org.example.Main;
+import org.junit.Test;
 
-public class test {
-    public static void main(String[] args) throws Exception{
+public class PageTest {
+    @Test
+    public void test() throws Exception{
         String[] arg = new String[3];
         arg[0] = "D:\\Table\\各科文件\\工程概论\\ZhaoXiongNi\\202121331017\\testFile\\org.txt";
         arg[1] = "D:\\Table\\各科文件\\工程概论\\ZhaoXiongNi\\202121331017\\testFile\\org_add.txt";

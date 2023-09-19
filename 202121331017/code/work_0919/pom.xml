@@ -19,6 +19,12 @@
             <artifactId>hanlp</artifactId>
             <version>portable-1.8.4</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>PageTest</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
