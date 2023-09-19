@@ -61,7 +61,7 @@
 | · Test Repor                            | · 测试报告                              | 40               | 60               |
 | · Size Measurement                      | · 计算工作量                            | 30               | 20               |
 | · Postmortem & Process Improvement Plan | · 事后总结, 并提出过程改进计划          | 30               | 30               |
-|                                         | · 合计                                  | 278              | 319              |
+|                                         | · 合计                                  |                  |                  |
 
 
 
